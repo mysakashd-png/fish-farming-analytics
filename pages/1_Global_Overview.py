@@ -11,7 +11,7 @@ total_production = df["VALUE"].sum()
 countries = df["COUNTRY.UN_CODE"].nunique()
 species = df["SPECIES.ALPHA_3_CODE"].nunique()
 
-c1, c2, c3 = st.columns(3)
+c1, c2, c3, c4 = st.columns(4)
 
 c1.metric("Total Production", f"{total_production:,.0f}")
 c2.metric("Countries", countries)
