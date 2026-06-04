@@ -34,8 +34,6 @@ c1, c2, c3, c4 = st.columns(4)
 c1.metric("Total Production", f"{total_production:,.0f}")
 c2.metric("Countries", countries)
 c3.metric("Species", species)
-
-c4 = st.columns(4)[3]
 c4.metric("Annual Growth %",f"{growth:.2f}%")
 
 st.divider()
