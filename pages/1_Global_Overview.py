@@ -31,7 +31,10 @@ growth = (
 
 c1, c2, c3, c4 = st.columns(4)
 
-c1.metric("Total Production", f"{total_production:,.0f}")
+c1.metric(
+    "Total Production",
+    f"{total_production/1_000_000:.1f} M tonnes"
+)
 c2.metric("Countries", countries)
 c3.metric("Species", species)
 c4.metric("Annual Growth %",f"{growth:.2f}%")
@@ -53,6 +56,12 @@ fig = px.line(
 )
 
 st.plotly_chart(fig, use_container_width=True)
+
+st.success(
+    f"Global aquaculture production reached "
+    f"{latest_value/1_000_000:.1f} million tonnes in {latest_year}, "
+    f"growing {growth:.2f}% compared to {previous_year}."
+)
 
 from utils.mappings import (
     load_country_mapping,
