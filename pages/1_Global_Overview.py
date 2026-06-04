@@ -17,7 +17,13 @@ c1.metric("Total Production", f"{total_production:,.0f}")
 c2.metric("Countries", countries)
 c3.metric("Species", species)
 
+growth = (
+    (latest_value - previous_value)
+    / previous_value
+) * 100
 
+c4 = st.columns(4)[3]
+c4.metric("Annual Growth %",f"{growth:.2f}%")
 
 st.divider()
 
@@ -58,13 +64,7 @@ previous_value = (
     .sum()
 )
 
-growth = (
-    (latest_value - previous_value)
-    / previous_value
-) * 100
 
-c4 = st.columns(4)[3]
-c4.metric("Annual Growth %",f"{growth:.2f}%")
 
 
 
