@@ -57,10 +57,24 @@ species_data = (
     )
     .head(10)
 )
+from utils.mappings import load_species_mapping
+
+species_map = load_species_mapping()
+
+species_data["Species_Name"] = (
+    species_data["SPECIES.ALPHA_3_CODE"]
+    .astype(str)
+    .map(species_map)
+)
+
+species_data["Species_Name"] = (
+    species_data["Species_Name"]
+    .fillna(species_data["SPECIES.ALPHA_3_CODE"])
+)
 
 fig2 = px.bar(
     species_data,
-    x="SPECIES.ALPHA_3_CODE",
+    x="Species_Name",
     y="VALUE",
     title="Top Species"
 )
