@@ -68,6 +68,8 @@ st.success(
     f"growing {growth:.2f}% compared to {previous_year}."
 )
 
+st.subheader("🌎 Top 10 Aquaculture Countries")
+
 from utils.mappings import (
     load_country_mapping,
     load_species_mapping
@@ -100,7 +102,6 @@ fig2 = px.bar(
 
 st.plotly_chart(fig2, use_container_width=True)
 
-st.subheader("🌎 Top 10 Aquaculture Countries")
 
 
 top_species = (
@@ -116,6 +117,7 @@ top_species["Species"] = (
     top_species["SPECIES.ALPHA_3_CODE"]
     .map(species_map)
 )
+st.subheader("🐟 Top 10 Aquaculture Species")
 
 fig3 = px.bar(
     top_species,
@@ -125,4 +127,3 @@ fig3 = px.bar(
 )
 
 st.plotly_chart(fig3, use_container_width=True)
-st.subheader("🐟 Top 10 Aquaculture Species")
