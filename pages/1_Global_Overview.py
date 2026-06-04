@@ -123,4 +123,5 @@ fig3 = px.bar(
 )
 
 st.plotly_chart(fig3, use_container_width=True)
-
+st.subheader("🌎 Top 10 Aquaculture Countries")
+st.subheader("🐟 Top 10 Aquaculture Species")
