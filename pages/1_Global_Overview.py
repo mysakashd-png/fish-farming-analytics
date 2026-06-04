@@ -92,4 +92,3 @@ fig3 = px.bar(
 
 st.plotly_chart(fig3, use_container_width=True)
 
-st.dataframe(trend.tail())
