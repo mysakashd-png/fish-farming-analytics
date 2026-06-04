@@ -21,10 +21,7 @@ selected_country = st.selectbox(
         country_map.get(x, str(x))
 )
 
-selected_country = st.selectbox(
-    "Select Country Code",
-    country_list
-)
+
 
 country_df = df[
     df["COUNTRY.UN_CODE"] == selected_country
