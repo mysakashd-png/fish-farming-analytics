@@ -6,8 +6,19 @@ st.title("🏳️ Country Analysis")
 
 df = pd.read_csv("data/raw/Aquaculture_Quantity.csv")
 
+from utils.mappings import load_country_mapping
+
+country_map = load_country_mapping()
+
 country_list = sorted(
     df["COUNTRY.UN_CODE"].unique()
+)
+
+selected_country = st.selectbox(
+    "Select Country",
+    country_list,
+    format_func=lambda x:
+        country_map.get(x, str(x))
 )
 
 selected_country = st.selectbox(
