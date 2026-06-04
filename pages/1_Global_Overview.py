@@ -11,16 +11,29 @@ total_production = df["VALUE"].sum()
 countries = df["COUNTRY.UN_CODE"].nunique()
 species = df["SPECIES.ALPHA_3_CODE"].nunique()
 
-c1, c2, c3, c4 = st.columns(4)
+latest_year = df["PERIOD"].max()
+previous_year = latest_year - 1
 
-c1.metric("Total Production", f"{total_production:,.0f}")
-c2.metric("Countries", countries)
-c3.metric("Species", species)
+latest_value = (
+    df[df["PERIOD"] == latest_year]["VALUE"]
+    .sum()
+)
+
+previous_value = (
+    df[df["PERIOD"] == previous_year]["VALUE"]
+    .sum()
+)
 
 growth = (
     (latest_value - previous_value)
     / previous_value
 ) * 100
+
+c1, c2, c3, c4 = st.columns(4)
+
+c1.metric("Total Production", f"{total_production:,.0f}")
+c2.metric("Countries", countries)
+c3.metric("Species", species)
 
 c4 = st.columns(4)[3]
 c4.metric("Annual Growth %",f"{growth:.2f}%")
@@ -50,22 +63,6 @@ from utils.mappings import (
 
 country_map = load_country_mapping()
 species_map = load_species_mapping()
-
-latest_year = df["PERIOD"].max()
-previous_year = latest_year - 1
-
-latest_value = (
-    df[df["PERIOD"] == latest_year]["VALUE"]
-    .sum()
-)
-
-previous_value = (
-    df[df["PERIOD"] == previous_year]["VALUE"]
-    .sum()
-)
-
-
-
 
 
 top_countries = (
