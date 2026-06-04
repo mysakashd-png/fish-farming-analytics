@@ -8,8 +8,19 @@ df = pd.read_csv(
     "data/raw/Aquaculture_Quantity.csv"
 )
 
+from utils.mappings import load_species_mapping
+
+species_map = load_species_mapping()
+
 species_list = sorted(
     df["SPECIES.ALPHA_3_CODE"].unique()
+)
+
+selected_species = st.selectbox(
+    "Select Species",
+    species_list,
+    format_func=lambda x:
+        species_map.get(x, x)
 )
 
 selected_species = st.selectbox(
