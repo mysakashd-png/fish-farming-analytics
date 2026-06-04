@@ -31,9 +31,14 @@ growth = (
 
 c1, c2, c3, c4 = st.columns(4)
 
+latest_production = (
+    df[df["PERIOD"] == latest_year]["VALUE"]
+    .sum()
+)
+
 c1.metric(
-    "Total Production",
-    f"{total_production/1_000_000:.1f} M"
+    "2023 Production",
+    f"{latest_production/1_000_000:.1f} M tonnes"
 )
 c2.metric("Countries", countries)
 c3.metric("Species", species)
