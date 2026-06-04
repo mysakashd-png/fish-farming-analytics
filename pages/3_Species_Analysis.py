@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from utils.mappings import load_species_mapping
+
+species_map = load_species_mapping()
 
 st.title("🐟 Species Analysis")
 
@@ -8,9 +11,7 @@ df = pd.read_csv(
     "data/raw/Aquaculture_Quantity.csv"
 )
 
-from utils.mappings import load_species_mapping
 
-species_map = load_species_mapping()
 
 species_list = sorted(
     df["SPECIES.ALPHA_3_CODE"].unique()
@@ -23,10 +24,6 @@ selected_species = st.selectbox(
         species_map.get(x, x)
 )
 
-selected_species = st.selectbox(
-    "Select Species",
-    species_list
-)
 
 species_df = df[
     df["SPECIES.ALPHA_3_CODE"]
