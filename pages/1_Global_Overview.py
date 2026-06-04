@@ -100,6 +100,8 @@ fig2 = px.bar(
 
 st.plotly_chart(fig2, use_container_width=True)
 
+st.subheader("🌎 Top 10 Aquaculture Countries")
+
 
 top_species = (
     df[df["PERIOD"] == latest_year]
@@ -123,5 +125,4 @@ fig3 = px.bar(
 )
 
 st.plotly_chart(fig3, use_container_width=True)
-st.subheader("🌎 Top 10 Aquaculture Countries")
 st.subheader("🐟 Top 10 Aquaculture Species")
