@@ -35,4 +35,61 @@ fig = px.line(
 
 st.plotly_chart(fig, use_container_width=True)
 
+from utils.mappings import (
+    load_country_mapping,
+    load_species_mapping
+)
+
+country_map = load_country_mapping()
+species_map = load_species_mapping()
+
+latest_year = df["PERIOD"].max()
+
+top_countries = (
+    df[df["PERIOD"] == latest_year]
+    .groupby("COUNTRY.UN_CODE")["VALUE"]
+    .sum()
+    .reset_index()
+    .sort_values("VALUE", ascending=False)
+    .head(10)
+)
+
+top_countries["Country"] = (
+    top_countries["COUNTRY.UN_CODE"]
+    .map(country_map)
+)
+
+fig2 = px.bar(
+    top_countries,
+    x="Country",
+    y="VALUE",
+    title=f"Top 10 Aquaculture Countries ({latest_year})"
+)
+
+st.plotly_chart(fig2, use_container_width=True)
+
+
+top_species = (
+    df[df["PERIOD"] == latest_year]
+    .groupby("SPECIES.ALPHA_3_CODE")["VALUE"]
+    .sum()
+    .reset_index()
+    .sort_values("VALUE", ascending=False)
+    .head(10)
+)
+
+top_species["Species"] = (
+    top_species["SPECIES.ALPHA_3_CODE"]
+    .map(species_map)
+)
+
+fig3 = px.bar(
+    top_species,
+    x="Species",
+    y="VALUE",
+    title=f"Top 10 Aquaculture Species ({latest_year})"
+)
+
+st.plotly_chart(fig3, use_container_width=True)
+
 st.dataframe(trend.tail())
