@@ -44,6 +44,30 @@ country_map = load_country_mapping()
 species_map = load_species_mapping()
 
 latest_year = df["PERIOD"].max()
+previous_year = latest_year - 1
+
+latest_value = (
+    df[df["PERIOD"] == latest_year]["VALUE"]
+    .sum()
+)
+
+previous_value = (
+    df[df["PERIOD"] == previous_year]["VALUE"]
+    .sum()
+)
+
+growth = (
+    (latest_value - previous_value)
+    / previous_value
+) * 100
+
+c4 = st.columns(4)[3]
+c4.metric(
+    "Annual Growth %",
+    f"{growth:.2f}%"
+)
+
+
 
 top_countries = (
     df[df["PERIOD"] == latest_year]
