@@ -40,7 +40,7 @@ fig = px.line(
     trend,
     x="PERIOD",
     y="VALUE",
-    title=f"Country {selected_country} Production"
+   title=f"{country_map.get(selected_country, selected_country)} Production Trend"
 )
 
 st.plotly_chart(
