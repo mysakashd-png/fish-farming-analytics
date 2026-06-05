@@ -94,15 +94,25 @@ top_countries["Country"] = (
 )
 
 fig2 = px.bar(
-    top_countries,
-    x="Country",
-    y="VALUE",
+    top_countries.sort_values("VALUE"),
+    x="VALUE",
+    y="Country",
+    orientation="h",
     title=f"Top 10 Aquaculture Countries ({latest_year})"
 )
 
-st.plotly_chart(fig2, use_container_width=True)
+fig2.update_layout(
+    height=600
+)
 
+top_country = top_countries.iloc[0]["Country"]
+top_value = top_countries.iloc[0]["VALUE"]
 
+st.info(
+    f"{top_country} leads global aquaculture production "
+    f"with approximately {top_value/1_000_000:.1f} million tonnes "
+    f"in {latest_year}."
+)
 
 top_species = (
     df[df["PERIOD"] == latest_year]
