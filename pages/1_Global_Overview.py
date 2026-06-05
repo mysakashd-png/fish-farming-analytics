@@ -68,7 +68,6 @@ st.success(
     f"growing {growth:.2f}% compared to {previous_year}."
 )
 
-st.subheader("🌎 Top 10 Aquaculture Countries")
 
 from utils.mappings import (
     load_country_mapping,
@@ -103,6 +102,18 @@ fig2 = px.bar(
 
 fig2.update_layout(
     height=600
+)
+
+st.subheader("🌎 Top 10 Aquaculture Countries")
+
+
+st.plotly_chart(
+    fig2,
+    use_container_width=True
+)
+
+st.info(
+    f"{top_country} leads global aquaculture production..."
 )
 
 top_country = top_countries.iloc[0]["Country"]
