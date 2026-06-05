@@ -112,12 +112,19 @@ st.plotly_chart(
     use_container_width=True
 )
 
+
+
+top_country = top_countries.iloc[0]["Country"]
+top_value = top_countries.iloc[0]["VALUE"]
+
 st.info(
     f"{top_country} leads global aquaculture production..."
 )
 
-top_country = top_countries.iloc[0]["Country"]
-top_value = top_countries.iloc[0]["VALUE"]
+st.info(
+    f"{top_country} leads global aquaculture production with approximately "
+    f"{top_value/1_000_000:.1f} million tonnes in {latest_year}."
+)
 
 st.info(
     f"{top_country} leads global aquaculture production "
