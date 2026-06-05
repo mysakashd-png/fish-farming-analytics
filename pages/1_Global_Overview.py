@@ -139,10 +139,14 @@ top_species["Species"] = (
 st.subheader("🐟 Top 10 Aquaculture Species")
 
 fig3 = px.bar(
-    top_species,
-    x="Species",
-    y="VALUE",
+    top_species.sort_values("VALUE"),
+    x="VALUE",
+    y="Species",
+    orientation="h",
     title=f"Top 10 Aquaculture Species ({latest_year})"
 )
 
+fig3.update_layout(
+    height=600
+)
 st.plotly_chart(fig3, use_container_width=True)
