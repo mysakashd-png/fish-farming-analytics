@@ -118,15 +118,6 @@ top_country = top_countries.iloc[0]["Country"]
 top_value = top_countries.iloc[0]["VALUE"]
 
 st.info(
-    f"{top_country} leads global aquaculture production..."
-)
-
-st.info(
-    f"{top_country} leads global aquaculture production with approximately "
-    f"{top_value/1_000_000:.1f} million tonnes in {latest_year}."
-)
-
-st.info(
     f"{top_country} leads global aquaculture production "
     f"with approximately {top_value/1_000_000:.1f} million tonnes "
     f"in {latest_year}."
